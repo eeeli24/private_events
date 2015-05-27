@@ -1,7 +1,7 @@
 <h1>
   <%= @user.name %>
 </h1>
-<h2>Events:</h2>
+<h2>Events</h2>
 <ul>
   <% @user.events.each do |event| %>
     <li>
@@ -9,5 +9,24 @@
       <p><%= event.date %></p>
     </li>
 
+  <% end %>
+</ul>
+<h2>Attended events</h2>
+<h3>Upcoming:</h3>
+<ul>
+  <% @upcoming_events.each do |upcoming_event| %>
+    <li>
+      <p><%= link_to upcoming_event.description, upcoming_event %></p>
+      <p><%= upcoming_event.date %> by <%= link_to upcoming_event.creator.name, upcoming_event.creator %></p>
+    </li>
+  <% end %>
+</ul>
+<h3>Previous:</h3>
+<ul>
+  <% @previous_events.each do |previous_event| %>
+    <li>
+      <p><%= link_to previous_event.description, previous_event %></p>
+      <p><%= previous_event.date %> by <%= link_to previous_event.creator.name, previous_event.creator %></p>
+    </li>
   <% end %>
 </ul>

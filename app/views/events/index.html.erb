@@ -1,5 +1,11 @@
-<h1>Events:</h1>
-<% @events.each do |event| %>
+<h1>Events</h1>
+<h2>Upcoming</h2>
+<% @upcoming.each do |event| %>
+  <h2><%= link_to event.description, event %></h2>
+  <p><%= event.date %> by <%= link_to event.creator.name, event.creator %></p>
+<% end %>
+<h2>Past</h2>
+<% @past.each do |event| %>
   <h2><%= link_to event.description, event %></h2>
   <p><%= event.date %> by <%= link_to event.creator.name, event.creator %></p>
 <% end %>

@@ -5,7 +5,18 @@
 <p>
   <%= @event.date %>
 </p>
+<h2>Attendees:</h2>
+<% @event.attendees.each do |attendee| %>
+  <p><%= link_to attendee.name, attendee %></p>
+<% end %>
 <h2>Event creator:</h2>
 <p>
   <%= link_to @creator.name, @creator %>
 </p>
+
+<% unless current_user == @event.creator || !logged_in? %>
+  <%= form_for(@current_user.attendances.build(attended_event_id: @event.id)) do |f| %>
+    <%= f.hidden_field :attended_event_id %>
+    <%= f.submit 'Attend this event' %>
+  <% end %>
+<% end %>

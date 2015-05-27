@@ -2,11 +2,14 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+    @upcoming = Event.upcoming
+    @past = Event.past
   end
 
   def show
     @event = Event.find(params[:id])
     @creator = @event.creator
+    @current_user = current_user
   end
 
   def new
