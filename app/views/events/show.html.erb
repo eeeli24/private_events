@@ -1,0 +1,11 @@
+<h1>
+  <%= @event.description %>
+</h1>
+<h2>Event date:</h2>
+<p>
+  <%= @event.date %>
+</p>
+<h2>Event creator:</h2>
+<p>
+  <%= link_to @creator.name, @creator %>
+</p>

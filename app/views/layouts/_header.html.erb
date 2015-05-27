@@ -1,0 +1,8 @@
+<%= link_to 'Home', root_url %>
+<% if logged_in? %>
+  <p>Logged in as <%= link_to @current_user['name'], @current_user %></p>
+  <%= link_to 'Log in as a different user', login_path %>
+  <%= link_to 'Log out', logout_path, :method => :delete %>
+<% else %>
+  <%= link_to 'Log in', login_path %>
+<% end %>

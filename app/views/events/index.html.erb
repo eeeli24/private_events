@@ -1,0 +1,5 @@
+<h1>Events:</h1>
+<% @events.each do |event| %>
+  <h2><%= link_to event.description, event %></h2>
+  <p><%= event.date %> by <%= link_to event.creator.name, event.creator %></p>
+<% end %>

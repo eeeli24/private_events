@@ -1,0 +1,10 @@
+<h1>Create a new event</h1>
+<%= form_for @event do |f| %>
+  <%= f.datetime_select :date, prompt: true %>
+  <%= f.label :date %>
+  <br>
+  <%= f.text_field :description %>
+  <%= f.label :description %>
+
+  <%= f.submit %>
+<% end %>
