@@ -1,32 +1,55 @@
-<h1>
-  <%= @user.name %>
-</h1>
-<h2>Events</h2>
-<ul>
-  <% @user.events.each do |event| %>
-    <li>
-      <p><%= link_to event.description, event %></p>
-      <p><%= event.date %></p>
-    </li>
-
+<h2><%= @user.name %></h2>
+<div class='panel panel-default'>
+  <% if @user.events.any? %>
+    <div class='panel-heading'>
+      <h3>Events</h3>
+    </div>
+    <table class='table'>
+      <% @user.events.each do |event| %>
+        <tr>
+          <td>
+            <p><%= link_to event.description, event %></p>
+            <p><%= event.date %></p>
+          </td>
+        </tr>
+      <% end %>
+    </table>
   <% end %>
-</ul>
-<h2>Attended events</h2>
-<h3>Upcoming:</h3>
-<ul>
-  <% @upcoming_events.each do |upcoming_event| %>
-    <li>
-      <p><%= link_to upcoming_event.description, upcoming_event %></p>
-      <p><%= upcoming_event.date %> by <%= link_to upcoming_event.creator.name, upcoming_event.creator %></p>
-    </li>
+  <% if @user.attended_events.any? %>
+    <div class='panel-heading'>
+      <h3>Attended events</h3>
+    </div>
+    <div class='row'>
+      <div class='col-md-6'>
+        <div class='panel-body'>
+          <h4>Upcoming:</h4>
+        </div>
+        <table class='table'>
+          <% @upcoming_events.each do |upcoming_event| %>
+            <tr>
+              <td>
+              <p><%= link_to upcoming_event.description, upcoming_event %></p>
+              <p><%= upcoming_event.date %> by <%= link_to upcoming_event.creator.name, upcoming_event.creator %></p>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class='col-md-6'>
+        <div class='panel-body'>
+          <h4>Previous:</h4>
+        </div>
+        <table class='table'>
+          <% @previous_events.each do |previous_event| %>
+            <tr>
+              <td>
+                <p><%= link_to previous_event.description, previous_event %></p>
+                <p><%= previous_event.date %> by <%= link_to previous_event.creator.name, previous_event.creator %></p>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
   <% end %>
-</ul>
-<h3>Previous:</h3>
-<ul>
-  <% @previous_events.each do |previous_event| %>
-    <li>
-      <p><%= link_to previous_event.description, previous_event %></p>
-      <p><%= previous_event.date %> by <%= link_to previous_event.creator.name, previous_event.creator %></p>
-    </li>
-  <% end %>
-</ul>
+</div>

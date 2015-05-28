@@ -1,22 +1,36 @@
-<h1>
-  <%= @event.description %>
-</h1>
-<h2>Event date:</h2>
-<p>
-  <%= @event.date %>
-</p>
-<h2>Attendees:</h2>
-<% @event.attendees.each do |attendee| %>
-  <p><%= link_to attendee.name, attendee %></p>
-<% end %>
-<h2>Event creator:</h2>
-<p>
-  <%= link_to @creator.name, @creator %>
-</p>
+<div class='panel panel-default'>
+  <div class='panel-heading'>
+    <h2>
+      <%= @event.description %>
+    </h2>
+    <p>
+      <%= @event.date %>
+    </p>
+  </div>
+  <% if @event.attendees.any? %>
+    <table class='table'>
+      <tr>
+        <th>
+          <h3>Attendees:</h3>
+        </th>
+      </tr>
+      <% @event.attendees.each do |attendee| %>
+        <tr>
+          <td>
+            <p><%= link_to attendee.name, attendee %></p>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+  <div class='panel-footer'>
+    <p>by: <%= link_to @creator.name, @creator %></p>
+  </div>
+</div>
 
 <% unless current_user == @event.creator || !logged_in? %>
   <%= form_for(@current_user.attendances.build(attended_event_id: @event.id)) do |f| %>
     <%= f.hidden_field :attended_event_id %>
-    <%= f.submit 'Attend this event' %>
+    <%= f.submit 'Attend this event', class: 'btn btn-default' %>
   <% end %>
 <% end %>

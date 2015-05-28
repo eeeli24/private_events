@@ -3,6 +3,6 @@ class Event < ActiveRecord::Base
   has_many :attendances, :foreign_key => :attended_event_id
   has_many :attendees, :through => :attendances, :source => :attendee
 
-  scope :upcoming, -> { where('date > ?', Time.now) }
-  scope :past, -> { where('date < ?', Time.now) }
+  scope :upcoming, -> { where('date > ?', Time.now).order('date ASC') }
+  scope :past, -> { where('date < ?', Time.now).order('date DESC') }
 end

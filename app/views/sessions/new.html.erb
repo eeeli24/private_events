@@ -1,5 +1,9 @@
-<%= form_for :session do |f| %>
-  <p>Log in a user(enter id)</p>
-  <%= f.text_field :id %>
-  <%= f.submit 'Log in' %>
+<h1>Log in a user(enter id)</h1>
+<%= form_for :session, :html => {:class => 'form-horizontal'} do |f| %>
+  <div class='form-group'>
+    <%= f.text_field :id %>
+  </div>
+  <div class='form-group'>
+    <%= f.submit 'Log in', class: 'btn btn-default' %>
+  </div>
 <% end %>

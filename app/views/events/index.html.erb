@@ -1,11 +1,25 @@
 <h1>Events</h1>
-<h2>Upcoming</h2>
-<% @upcoming.each do |event| %>
-  <h2><%= link_to event.description, event %></h2>
-  <p><%= event.date %> by <%= link_to event.creator.name, event.creator %></p>
-<% end %>
-<h2>Past</h2>
-<% @past.each do |event| %>
-  <h2><%= link_to event.description, event %></h2>
-  <p><%= event.date %> by <%= link_to event.creator.name, event.creator %></p>
-<% end %>
+<div class='row'>  
+  <div class='col-md-6'>
+    <h2>Upcoming</h2>
+    <div class='list-group'>
+      <% @upcoming.each do |event| %>
+        <a href='events/<%= event.id %>' class='list-group-item'>
+          <h4 class='list-group-item-heading'><%= event.description %></h4>
+          <p class='list-group-item-text'><%= event.date %> by <%= event.creator.name %></p>
+        </a>
+      <% end %>
+    </div>
+  </div>
+  <div class='col-md-6'>
+    <h2>Past</h2>
+    <div class='list-group'>
+      <% @past.each do |event| %>
+        <a href='events/<%= event.id %>' class='list-group-item'>
+          <h4 class='list-group-item-heading'><%= event.description %></h4>
+          <p class='list-group-item-text'><%= event.date %> by <%= event.creator.name %></p>
+        </a>
+      <% end %>
+    </div>
+  </div>
+</div>
